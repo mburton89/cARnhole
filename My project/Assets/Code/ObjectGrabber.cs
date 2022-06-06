@@ -118,11 +118,11 @@ public class ObjectGrabber : MonoBehaviour
     {
         if (_grabbedObject != null)
         {
-            if (_previouslyGrabbedObject != null)
-            {
-                Destroy(_previouslyGrabbedObject);
-            }
-            _previouslyGrabbedObject = _grabbedObject.gameObject;
+            //if (_previouslyGrabbedObject != null)
+            //{
+            //    Destroy(_previouslyGrabbedObject);
+            //}
+            //_previouslyGrabbedObject = _grabbedObject.gameObject;
 
             _grabbedObject.Fling();
         }

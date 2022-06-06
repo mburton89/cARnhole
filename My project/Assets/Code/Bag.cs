@@ -14,6 +14,11 @@ public class Bag : MonoBehaviour
     private Rigidbody _rigidbody;
     public Transform initialSpawnPoint;
 
+    private void OnDestroy()
+    {
+        print("OnDestroy");
+    }
+
     private void Start()
     {
         _hasThrown = false;

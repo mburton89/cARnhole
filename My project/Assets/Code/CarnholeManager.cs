@@ -11,8 +11,6 @@ public class CarnholeManager : MonoBehaviour
     public bool isAlternatingTurns;
     public bool isPlayerOnesTurn;
     public bool player1GoesFirst;
-    public GameObject player1Indicator;
-    public GameObject player2Indicator;
     private int _turnsCompletedInRounds;
 
     public int p1RoundScore;
@@ -153,6 +151,8 @@ public class CarnholeManager : MonoBehaviour
 
     void CompleteRound()
     {
+        print("CompleteRound");
+
         if (p1RoundScore > p2RoundScore)
         {
             player1GoesFirst = true;
@@ -183,20 +183,12 @@ public class CarnholeManager : MonoBehaviour
         p2RoundScoreText.SetText("Red: " + p2RoundScore.ToString());
         p1TotalScoreText.SetText("Blue: " + p1TotalScore.ToString());
         p2TotalScoreText.SetText("Red: " + p2TotalScore.ToString());
-        if (isPlayerOnesTurn)
-        {
-            player1Indicator.SetActive(true);
-            player2Indicator.SetActive(false);
-        }
-        else
-        {
-            player1Indicator.SetActive(false);
-            player2Indicator.SetActive(true);
-        }
     }
 
     public void StartNewGame()
     {
+        print("StartNewGame");
+
         Bag[] currentBags = FindObjectsOfType<Bag>();
         if (currentBags != null)
         {
