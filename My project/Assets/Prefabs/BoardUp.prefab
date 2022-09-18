@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 5387657062999680661}
   m_Layer: 0
   m_Name: Table_Down1
-  m_TagString: Untagged
+  m_TagString: OnePoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
