@@ -17,8 +17,7 @@ public class ARTapToPlaceObject : MonoBehaviour
     public GameObject objectToPlace1;
     public GameObject objectToPlace2;
 
-    bool hasPlacedObject1 = false;
-    bool hasPlacedObject2 = false;
+    bool hasPlacedObject = false;
 
     void Start()
     {
@@ -27,7 +26,7 @@ public class ARTapToPlaceObject : MonoBehaviour
 
     void Update()
     {
-        if (hasPlacedObject1 && hasPlacedObject2)
+        if (hasPlacedObject)
         {
             placementIndicator.SetActive(false);
         }
@@ -40,13 +39,9 @@ public class ARTapToPlaceObject : MonoBehaviour
 
         if (placementPoseIsValid && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
-            if (!hasPlacedObject1)
+            if (!hasPlacedObject)
             {
-                PlaceObject1();
-            }
-            else if (!hasPlacedObject2)
-            {
-                PlaceObject2();
+                PlaceObject();
             }
         }
     }
@@ -81,15 +76,11 @@ public class ARTapToPlaceObject : MonoBehaviour
         }
     }
 
-    void PlaceObject1()
+    void PlaceObject()
     {
         Instantiate(objectToPlace1, placementPose.position, placementPose.rotation);
-        hasPlacedObject1 = true;
-    }
+        Instantiate(objectToPlace2, new Vector3(Camera.main.transform.position.x, placementPose.position.y, Camera.main.transform.position.z), placementPose.rotation);
+        hasPlacedObject = true;
 
-    void PlaceObject2()
-    {
-        Instantiate(objectToPlace2, placementPose.position, placementPose.rotation);
-        hasPlacedObject2 = true;
     }
 }
