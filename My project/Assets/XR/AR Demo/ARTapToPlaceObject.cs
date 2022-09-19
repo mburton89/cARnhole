@@ -81,6 +81,6 @@ public class ARTapToPlaceObject : MonoBehaviour
         Instantiate(objectToPlace1, placementPose.position, placementPose.rotation);
         Instantiate(objectToPlace2, new Vector3(Camera.main.transform.position.x, placementPose.position.y, Camera.main.transform.position.z), placementPose.rotation);
         hasPlacedObject = true;
-
+        SoundManager.Instance.boardPlacedSound.Play();
     }
 }

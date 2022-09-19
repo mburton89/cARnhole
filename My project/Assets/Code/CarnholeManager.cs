@@ -33,7 +33,7 @@ public class CarnholeManager : MonoBehaviour
 
     void Start()
     {
-        StartNewGame();
+        //StartNewGame();
     }
 
     private void OnEnable()
@@ -50,6 +50,15 @@ public class CarnholeManager : MonoBehaviour
 
     public void AwardPointsForRound(bool isPlayer1, int pointsToAward, bool goToNextPlayer)
     {
+        if (pointsToAward == 1)
+        {
+            SoundManager.Instance.onePointSound.Play();
+        }
+        else if (pointsToAward == 3)
+        {
+            SoundManager.Instance.threePointsSound.Play();
+        }
+
         if (isPlayer1) 
         {
             if (p2RoundScore == 0)

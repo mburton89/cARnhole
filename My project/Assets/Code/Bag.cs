@@ -38,6 +38,8 @@ public class Bag : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        SoundManager.Instance.bagHitSound.Play();
+
         if (collision.gameObject.CompareTag("OnePoint") && !_hasHitBoard)
         {
             _hasHitBoard = true;
