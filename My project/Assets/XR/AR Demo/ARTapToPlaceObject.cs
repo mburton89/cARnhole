@@ -27,14 +27,14 @@ public class ARTapToPlaceObject : MonoBehaviour
 
     void Update()
     {
-        if (!hasPlacedObject1 && !hasPlacedObject2)
+        if (hasPlacedObject1 && hasPlacedObject2)
         {
-            UpdatePlacementPose();
-            UpdatePlacementIndicator();
+            placementIndicator.SetActive(false);
         }
         else
         {
-            placementIndicator.SetActive(false);
+            UpdatePlacementPose();
+            UpdatePlacementIndicator();
         }
 
 
