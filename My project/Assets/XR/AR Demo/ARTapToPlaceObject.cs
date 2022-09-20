@@ -19,6 +19,9 @@ public class ARTapToPlaceObject : MonoBehaviour
 
     bool hasPlacedObject = false;
 
+    public Transform handCursor;
+    public Transform tapToPlaceText;
+
     void Start()
     {
         arOrigin = FindObjectOfType<ARRaycastManager>();
@@ -82,5 +85,7 @@ public class ARTapToPlaceObject : MonoBehaviour
         Instantiate(objectToPlace2, new Vector3(Camera.main.transform.position.x, placementPose.position.y, Camera.main.transform.position.z), placementPose.rotation);
         hasPlacedObject = true;
         SoundManager.Instance.boardPlacedSound.Play();
+        handCursor.localScale = Vector3.one;
+        tapToPlaceText.localScale = Vector3.zero;
     }
 }

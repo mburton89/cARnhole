@@ -28,6 +28,7 @@ public class CarnholeManager : MonoBehaviour
 
     void Awake()
     {
+        Application.targetFrameRate = 60;
         Instance = this;
     }
 
@@ -154,13 +155,16 @@ public class CarnholeManager : MonoBehaviour
         }
         else
         {
-            nextRoundButton.gameObject.SetActive(true);
+            //nextRoundButton.gameObject.SetActive(true);
+            CompleteRound();
         }
     }
 
     void CompleteRound()
     {
         print("CompleteRound");
+
+        SoundManager.Instance.newRoundSound.Play();
 
         if (p1RoundScore > p2RoundScore)
         {
@@ -180,10 +184,12 @@ public class CarnholeManager : MonoBehaviour
         Bag[] currentBags = FindObjectsOfType<Bag>();
         foreach (Bag bag in currentBags)
         {
-            Destroy(bag.gameObject);
+            //Destroy(bag.gameObject);
+            bag.MoveToSpawnPoint();
         }
-        BagSpawner.Instance.SpawnBags();
+        //BagSpawner.Instance.SpawnBags();
         nextRoundButton.gameObject.SetActive(false);
+
     }
 
     void UpdateUI()

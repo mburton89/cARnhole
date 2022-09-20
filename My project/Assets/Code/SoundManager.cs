@@ -10,6 +10,7 @@ public class SoundManager : MonoBehaviour
     public AudioSource bagHitSound;
     public AudioSource onePointSound;
     public AudioSource threePointsSound;
+    public AudioSource newRoundSound;
 
     private void Awake()
     {

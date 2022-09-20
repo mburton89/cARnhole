@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Bag : MonoBehaviour
 {
@@ -12,7 +13,8 @@ public class Bag : MonoBehaviour
     private int _pointsToGive;
     public bool isPlayer1;
     private Rigidbody _rigidbody;
-    public Transform initialSpawnPoint;
+    public Vector3 initialSpawnPoint;
+    public Vector3 initialAngles;
 
     private void OnDestroy()
     {
@@ -28,6 +30,8 @@ public class Bag : MonoBehaviour
         _gavePointsToPlayer = false;
         _pointsToGive = 0;
         _rigidbody = GetComponent<Rigidbody>();
+        initialSpawnPoint = transform.position;
+        initialAngles = transform.eulerAngles;
         InvokeRepeating(nameof(CheckMomentum), 0, 1f);
     }
 
@@ -81,7 +85,7 @@ public class Bag : MonoBehaviour
         else if (collision.gameObject.CompareTag("OutOfBounds"))
         {
             _rigidbody.velocity = Vector3.zero;
-            transform.position = initialSpawnPoint.position;
+            transform.position = initialSpawnPoint;
             transform.eulerAngles = Vector3.zero;
             _gavePointsToPlayer = false;
             _hasThrown = false;
@@ -100,5 +104,22 @@ public class Bag : MonoBehaviour
                 gameObject.tag = "OnePoint";
             }
         }
+    }
+
+    public void MoveToSpawnPoint()
+    {
+        StartCoroutine(MoveToSpawnPointCo());
+    }
+
+    private IEnumerator MoveToSpawnPointCo()
+    {
+        GetComponent<Collider>().enabled = false;
+        GetComponent<Rigidbody>().isKinematic = true;
+        transform.DOMove(initialSpawnPoint, 3f, false).SetEase(Ease.InOutQuad);
+        yield return new WaitForSeconds(3.01f);
+        transform.position = initialSpawnPoint;
+        transform.eulerAngles = initialAngles;
+        GetComponent<Collider>().enabled = true;
+        GetComponent<Rigidbody>().isKinematic = false;
     }
 }
