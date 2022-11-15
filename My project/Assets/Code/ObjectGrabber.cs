@@ -35,27 +35,27 @@ public class ObjectGrabber : MonoBehaviour
         _holdButton.onPointerUp.RemoveListener(FlingObject);
     }
 
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
-        {
-            _collider.enabled = false;
-        }
-        else if (Input.GetMouseButtonUp(0) || Input.GetMouseButtonUp(1))
-        {
-            _collider.enabled = true;
-        }
+    //void Update()
+    //{
+    //    if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
+    //    {
+    //        _collider.enabled = false;
+    //    }
+    //    else if (Input.GetMouseButtonUp(0) || Input.GetMouseButtonUp(1))
+    //    {
+    //        _collider.enabled = true;
+    //    }
 
-        if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0))
-        {
-            GrabObject();
-        }
+    //    if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0))
+    //    {
+    //        GrabObject();
+    //    }
 
-        else if (Input.GetKeyUp(KeyCode.E) || Input.GetMouseButtonUp(0))
-        {
-            FlingObject();
-        }
-    }
+    //    else if (Input.GetKeyUp(KeyCode.E) || Input.GetMouseButtonUp(0))
+    //    {
+    //        FlingObject();
+    //    }
+    //}
 
     private void OnTriggerEnter(Collider other)
     {

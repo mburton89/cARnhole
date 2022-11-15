@@ -121,5 +121,12 @@ public class Bag : MonoBehaviour
         transform.eulerAngles = initialAngles;
         GetComponent<Collider>().enabled = true;
         GetComponent<Rigidbody>().isKinematic = false;
+        yield return new WaitForSeconds(.1f);
+        _hasThrown = false;
+        _hasHitBoard = false;
+        _hasHitHole = false;
+        _hasHitNoPoints = false;
+        _gavePointsToPlayer = false;
+        _pointsToGive = 0;
     }
 }

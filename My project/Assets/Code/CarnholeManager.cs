@@ -137,7 +137,6 @@ public class CarnholeManager : MonoBehaviour
         else
         {
             ShowEndOfRoundUI();
-            _turnsCompletedInRounds = 0;
         }
     }
 
@@ -188,8 +187,8 @@ public class CarnholeManager : MonoBehaviour
             bag.MoveToSpawnPoint();
         }
         //BagSpawner.Instance.SpawnBags();
-        nextRoundButton.gameObject.SetActive(false);
-
+        //nextRoundButton.gameObject.SetActive(false);
+        _turnsCompletedInRounds = 0;
     }
 
     void UpdateUI()

@@ -15,6 +15,7 @@ public class HoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        print("OnPointerDown");
         isPressed = true;
         onPointerDown.Invoke();
     }
