@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.Experimental.XR;
 using UnityEngine.XR.ARSubsystems;
+using TMPro;
 
 public class ARTapToPlaceObject : MonoBehaviour
 {
@@ -18,9 +19,11 @@ public class ARTapToPlaceObject : MonoBehaviour
     public GameObject objectToPlace2;
 
     bool hasPlacedObject = false;
+    bool hasSeenHint2;
+    bool hasSeenHint3;
 
     public Transform handCursor;
-    public Transform tapToPlaceText;
+    public TextMeshProUGUI tapToPlaceText;
 
     void Start()
     {
@@ -69,6 +72,12 @@ public class ARTapToPlaceObject : MonoBehaviour
     {
         if (placementPoseIsValid)
         {
+            if (!hasSeenHint2)
+            {
+                hasSeenHint2 = true;
+                tapToPlaceText.SetText("Tap to place board on ground");
+            }
+
             placementIndicator.SetActive(true);
             placementIndicator.transform.SetPositionAndRotation(placementPose.position, placementPose.rotation);
             placementIndicator.transform.position = placementPose.position;
@@ -81,11 +90,26 @@ public class ARTapToPlaceObject : MonoBehaviour
 
     void PlaceObject()
     {
+        if (!hasSeenHint3)
+        {
+            hasSeenHint3 = true;
+            tapToPlaceText.SetText("Tap and hold to grab bag");
+            StartCoroutine(ThrowMessageCo());
+        }
+
         Instantiate(objectToPlace1, placementPose.position, placementPose.rotation);
         Instantiate(objectToPlace2, new Vector3(Camera.main.transform.position.x, placementPose.position.y, Camera.main.transform.position.z), placementPose.rotation);
         hasPlacedObject = true;
         SoundManager.Instance.boardPlacedSound.Play();
         handCursor.localScale = Vector3.one;
-        tapToPlaceText.localScale = Vector3.zero;
+        //tapToPlaceText.transform.localScale = Vector3.zero;
+    }
+
+    private IEnumerator ThrowMessageCo()
+    {
+        yield return new WaitForSeconds(5);
+        tapToPlaceText.SetText("Move phone and release thumb to throw");
+        yield return new WaitForSeconds(5);
+        tapToPlaceText.SetText("");
     }
 }

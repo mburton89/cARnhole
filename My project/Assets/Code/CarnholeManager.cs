@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
@@ -25,6 +26,7 @@ public class CarnholeManager : MonoBehaviour
 
     public Button nextRoundButton;
     public Button newGameButton;
+    public Button homeButton;
 
     void Awake()
     {
@@ -41,12 +43,14 @@ public class CarnholeManager : MonoBehaviour
     {
         nextRoundButton.onClick.AddListener(CompleteRound);
         newGameButton.onClick.AddListener(StartNewGame);
+        homeButton.onClick.AddListener(Restart);
     }
 
     private void OnDisable()
     {
         nextRoundButton.onClick.RemoveListener(CompleteRound);
         newGameButton.onClick.RemoveListener(StartNewGame);
+        homeButton.onClick.RemoveListener(Restart);
     }
 
     public void AwardPointsForRound(bool isPlayer1, int pointsToAward, bool goToNextPlayer)
@@ -220,5 +224,10 @@ public class CarnholeManager : MonoBehaviour
         p2TotalScore = 0;
         UpdateUI();
         newGameButton.gameObject.SetActive(false);
+    }
+
+    void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
