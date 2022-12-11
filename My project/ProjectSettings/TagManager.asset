@@ -9,6 +9,7 @@ TagManager:
   - OutOfBounds
   - NoPoints
   - ThreePoints
+  - BoardContainer
   layers:
   - Default
   - TransparentFX

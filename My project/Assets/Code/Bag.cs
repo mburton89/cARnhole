@@ -32,7 +32,7 @@ public class Bag : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
         initialSpawnPoint = transform.position;
         initialAngles = transform.eulerAngles;
-        InvokeRepeating(nameof(CheckMomentum), 0, 1f);
+        InvokeRepeating(nameof(CheckMomentum), 0, .5f);
     }
 
     public void Throw()
@@ -42,7 +42,7 @@ public class Bag : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        SoundManager.Instance.bagHitSound.Play();
+        SoundManager.Instance.PlayBagHitSound();
 
         if (collision.gameObject.CompareTag("OnePoint") && !_hasHitBoard)
         {
@@ -103,6 +103,11 @@ public class Bag : MonoBehaviour
             {
                 gameObject.tag = "OnePoint";
             }
+
+            if (_pointsToGive == 3)
+            {
+                gameObject.tag = "ThreePoints";
+            }
         }
     }
 
@@ -116,6 +121,7 @@ public class Bag : MonoBehaviour
         GetComponent<Collider>().enabled = false;
         GetComponent<Rigidbody>().isKinematic = true;
         transform.DOMove(initialSpawnPoint, 3f, false).SetEase(Ease.InOutQuad);
+        transform.DORotate(initialAngles, 3f, RotateMode.Fast).SetEase(Ease.InOutQuad);
         yield return new WaitForSeconds(3.01f);
         transform.position = initialSpawnPoint;
         transform.eulerAngles = initialAngles;
@@ -128,5 +134,6 @@ public class Bag : MonoBehaviour
         _hasHitNoPoints = false;
         _gavePointsToPlayer = false;
         _pointsToGive = 0;
+        gameObject.tag = "Untagged";
     }
 }

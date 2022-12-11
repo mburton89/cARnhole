@@ -158,7 +158,6 @@ public class CarnholeManager : MonoBehaviour
         }
         else
         {
-            //nextRoundButton.gameObject.SetActive(true);
             CompleteRound();
         }
     }

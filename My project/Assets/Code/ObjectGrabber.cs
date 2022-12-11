@@ -85,7 +85,7 @@ public class ObjectGrabber : MonoBehaviour
         //    _grabbedObject = _potentialObject;
         //    _grabbedObject.Grab(this);
         //}
-        if (_potentialObjects != null && _potentialObjects.Count > 0)
+        if (_potentialObjects != null && _potentialObjects.Count > 0 && _hand.transform.localScale != Vector3.zero)
         {
             GrabbableObject closestPotentialObject = null;
             float closestDistanceFromObject = 0;

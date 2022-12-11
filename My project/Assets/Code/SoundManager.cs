@@ -16,4 +16,11 @@ public class SoundManager : MonoBehaviour
     {
         Instance = this;
     }
+
+    public void PlayBagHitSound()
+    {
+        float rand = Random.Range(0.9f, 1.1f);
+        bagHitSound.pitch = rand;
+        bagHitSound.Play();
+    }
 }
